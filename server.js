@@ -14,7 +14,7 @@ const connection = mysql.createConnection({
   database: "e_commerce",
 });
 
-// Generate 500 customer
+// Generate customers
 for (let i = 0; i < customerCount; i++) {
   const firstName = faker.name.firstName();
   const middleName = faker.name.middleName();
@@ -38,11 +38,12 @@ for (let i = 0; i < customerCount; i++) {
   );
 }
 
-//Generate 2500 products
+//Generate products
 for (let i = 0; i < productCount; i++) {
   const name = faker.commerce.productName();
   const description = faker.commerce.productDescription();
   const attributes = {
+    brand: faker.company.companyName(),
     material: faker.commerce.productMaterial(),
     color: faker.commerce.color(),
     price: faker.commerce.price(),
@@ -60,7 +61,7 @@ for (let i = 0; i < productCount; i++) {
   );
 }
 
-//Generate 1500 orders
+//Generate orders
 for (let i = 0; i < orderCount; i++) {
   const customerId = faker.random.number({ min: 1, max: customerCount });
   const orderDate = faker.date.recent();
@@ -73,7 +74,7 @@ for (let i = 0; i < orderCount; i++) {
   });
 }
 
-//Generate 1500 order details
+//Generate order details
 for (let i = 0; i < orderDetailCount; i++) {
   const orderId = faker.random.number({ min: 1, max: orderCount });
   const productId = faker.random.number({ min: 1, max: productCount });
